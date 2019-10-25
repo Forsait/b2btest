@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="saved-container">
+    <h3 class="block-header">Сохраненные</h3>
+
+    <div class="saved-list">
+      <div 
+        class="saved-item"
+        *ngFor="let item of savedFilmArray | async"
+      >
+        <a [routerLink]="'/id/' + item.imdbID" target="_blank">{{ item.Title }}</a>
+        <button 
+          class="btn remove-saved"
+          (click)="removeSaved(item.imdbID)"
+        >x</button>
+      </div>
+      <div *ngIf="(savedFilmArray | async).length === 0">Нет сохраненных</div>
+    </div>
+  </div>
+  <div class="search">
+    <h3 class="block-header">Поиск</h3>
+    <form class="search-input" #formelem>
+      <input [formControl]="searchForm" type="text">
+      <button type="submit" class="btn-search"></button>  
+    </form>
+
+    <div *ngIf="autoItems.length > 0 && isShowAutocomplete" class="autocomplete-results">
+      <ul class="autocomplete-list">
+        <li class="autocomplete-item" 
+        *ngFor="let item of autoItems"
+        >
+        <a [routerLink]="'/id/' + item.imdbID">{{ item.Title }}</a>
+      </li>
+      </ul>
+    </div>
+
+    <div class="search-results">
+      <div class="search-list">
+        <div 
+          class="search-item"
+          *ngFor="let item of searchResults"
+        >
+          <div class="poster">
+            <img src="{{item.Poster}}"> 
+          </div>
+          <div class="text-info">
+            <h3 [routerLink]="'/id/' + item.imdbID" class="film-title">{{item.Title}}</h3>
+            <button 
+              class="btn add-saved"
+              (click)="saveItem(item)"
+              mat-raised-button
+            >Сохранить</button>
+          </div>
+        </div>
+      </div>
+      <div class="paginator-container" *ngIf="totalSearchResults > 0">
+        <mat-paginator 
+          [length]="totalSearchResults"
+          [pageSize]="10"
+          (page)="changePage($event)"
+        >
+        </mat-paginator>  
+      </div>
+    </div>
+
+  </div>
+</div>

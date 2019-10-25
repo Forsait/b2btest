@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="flex-center">
+    <div class="header-container">
+      <h1>{{filmInfo?.Title}}</h1>
+      
+    </div>
+    <div>
+      <button 
+        class="btn remove-film"
+        *ngIf="isSaved === true"
+        (click)="removeFilm()"
+        mat-raised-button
+      >Удалить</button>
+      <button 
+        class="btn save-film"
+        *ngIf="isSaved === false"
+        (click)="saveFilm()"
+        mat-raised-button
+      >Сохранить</button>
+    </div>
+    <img src="{{filmInfo?.Poster}}">
+  </div>
+  <div class="desc-item">
+    <div class="desc-name">
+      Actors
+    </div>
+    <div class="desc-value">
+      {{filmInfo?.Actors}}
+    </div>
+  </div>
+  <div class="desc-item">
+    <div class="desc-name">
+      Genre
+    </div>
+    <div class="desc-value">
+      {{filmInfo?.Genre}}
+    </div>
+  </div>
+  <div class="desc-item">
+    <div class="desc-name">
+      Writer
+    </div>
+    <div class="desc-value">
+      {{filmInfo?.Writer}}
+    </div>
+  </div>
+  <div class="desc-item">
+    <div class="desc-name">
+      Plot
+    </div>
+    <div class="desc-value">
+      {{filmInfo?.Plot}}
+    </div>
+  </div>
+  <div class="desc-item">
+    <div class="desc-name">
+      Runtime
+    </div>
+    <div class="desc-value">
+      {{filmInfo?.Runtime}}
+    </div>
+  </div>
+  <div class="desc-item">
+    <div class="desc-name">
+      Year
+    </div>
+    <div class="desc-value">
+      {{filmInfo?.Year}}
+    </div>
+  </div>
+  <div class="desc-item">
+    <div class="desc-name">
+      imdbRating
+    </div>
+    <div class="desc-value">
+      {{filmInfo?.imdbRating}}
+    </div>
+  </div>
+</div>
